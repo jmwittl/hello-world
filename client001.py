@@ -82,9 +82,23 @@ def main001():
 #
         print("total sent=%d"%sent)
         print("8")
-        soc.send(b'--quit--')
-        soc.shutdown(socket.SHUT_RDWR)
-        soc.close()
+        print("sending data")
+        sent=soc.send("--quit--\n")
+        print("total sent=%d"%sent)
+
+        print("9")
+        print("sending data")
+        sent=soc.send(b'--quit--\n')
+        print("total sent=%d"%sent)
+
+        print("10")
+        print("shutting down socket")
+        sent=soc.shutdown(socket.SHUT_RDWR)
+
+        print("11")
+        print("close socket")
+        sent=soc.close()
+
 
     except:
         print ("Unexpected error:", sys.exc_info()[0])
