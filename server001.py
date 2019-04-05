@@ -179,5 +179,33 @@ def process_input(input_str):
 
 	return "Hello " + str(input_str).upper()
 
+def receive_input(conn, maxbs):
+
+        buff="";
+        try:
+                print("5")
+                data=conn.recv(maxbs)
+                while sys.getsizeof(data)>0:
+                        print("data size %d"%sys.getsizeof(data)+".\t"+data)
+
+                        dataAnalyser(data)
+
+                        buff=buff.join(data)
+                        if sys.getsizeof(data)<22:
+                                print("6.5")
+                                break
+                        if (sys.getsizeof(buff)+sys.getsizeof(data))>maxbs:
+                                raise exception("The input is greated than %d"%$
+                        data=conn.recv(maxbs)
+                        print("6")
+        except:
+                raise 
+
+        return buff.decode('ASCII').rstrip()
+
+def dataAnalyser(data):
+
+        print(' '.join(format(ord(x), 'b') for x in data))
+
 if __name__ == "__main__":
     main()
